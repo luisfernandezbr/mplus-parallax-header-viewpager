@@ -1,0 +1,1 @@
+include ':app', ':mplus-parallax-viewpager-lib', ':mplus-parallax-viewpager-client'

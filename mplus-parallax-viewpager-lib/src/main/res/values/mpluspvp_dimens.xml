@@ -1,0 +1,10 @@
+<resources>
+
+	<dimen name="mpluspvp_activity_horizontal_margin">16dp</dimen>
+	<dimen name="mpluspvp_activity_vertical_margin">16dp</dimen>
+	
+	<dimen name="mpluspvp_header_height">298dp</dimen>
+	<dimen name="mpluspvp_min_header_height">250dp</dimen>
+	<dimen name="mpluspvp_header_avatar_size">100dp</dimen>
+
+</resources>
