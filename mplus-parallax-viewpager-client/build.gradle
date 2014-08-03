@@ -22,6 +22,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project (':mplus-parallax-viewpager-lib')
+
+
     compile 'com.android.support:support-v4:19.+'
     compile 'com.android.support:appcompat-v7:19.1.+'
+
+
+//    compile 'com.github.gabrielemariotti.cards:library-extra:1.8.0'
 }

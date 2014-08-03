@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
-import com.kmshack.newsstand.ScrollTabHolderFragment;
+import com.kmshack.newsstand.ScrollTabHolderListener;
 
 import br.com.mobiplus.parallaxviewpager.ParallaxPagerAdapter;
 import br.com.mobiplus.parallaxviewpager.ParallaxViewPagerUtil;
 import br.com.mobiplus.parallaxviewpager.SampleListFragment;
 
-public class MainActivity  extends ActionBarActivity {
+public class MainActivity  extends ActionBarActivity implements ItemListFragment.OnFragmentInteractionListener {
 
     private ParallaxViewPagerUtil parallaxViewPagerUtil;
 
@@ -30,6 +30,11 @@ public class MainActivity  extends ActionBarActivity {
         parallaxViewPagerUtil.setAlphaForegroundColorSpan(0xffffffff);
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+
     private class MyAdapter extends ParallaxPagerAdapter {
 
         private final String[] TITLES = {"Capitais", "Bandeiras", "Relevo e Clima", "Países"};
@@ -39,8 +44,14 @@ public class MainActivity  extends ActionBarActivity {
         }
 
         @Override
-        public ScrollTabHolderFragment getFragment(int position) {
-            return (ScrollTabHolderFragment) SampleListFragment.newInstance(position);
+        public ScrollTabHolderListener getFragment(int position) {
+
+            if (position == 1) {
+                return ItemListFragment.newInstance(position);
+            } else {
+                return (ScrollTabHolderListener) SampleListFragment.newInstance(position);
+            }
+
         }
 
         @Override

@@ -28,18 +28,19 @@ public abstract class ParallaxPagerAdapter extends FragmentPagerAdapter {
     @Override
     public abstract int getCount();
 
-    public abstract ScrollTabHolderFragment getFragment(int position);
+    public abstract ScrollTabHolderListener getFragment(int position);
 
     @Override
     public Fragment getItem(int position) {
-        ScrollTabHolderFragment fragment = getFragment(position);
+        ScrollTabHolderListener fragment = getFragment(position);
+
 
         mScrollTabHolders.put(position, fragment);
         if (mListener != null) {
             fragment.setScrollTabHolder(mListener);
         }
 
-        return fragment;
+        return fragment.getFragment();
     }
 
     public SparseArrayCompat<ScrollTabHolderListener> getScrollTabHolders() {

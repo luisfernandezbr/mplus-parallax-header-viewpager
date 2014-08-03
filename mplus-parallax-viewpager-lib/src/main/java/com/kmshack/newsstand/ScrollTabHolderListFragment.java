@@ -1,9 +1,9 @@
 package com.kmshack.newsstand;
 
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.widget.AbsListView;
 
-public abstract class ScrollTabHolderFragment extends Fragment implements ScrollTabHolderListener {
+public abstract class ScrollTabHolderListFragment extends ListFragment implements ScrollTabHolderListener {
 
 	protected ScrollTabHolderListener mScrollTabHolder;
 
@@ -11,6 +11,7 @@ public abstract class ScrollTabHolderFragment extends Fragment implements Scroll
 		mScrollTabHolder = scrollTabHolder;
 	}
 
+    @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount, int pagePosition) {
 
     }

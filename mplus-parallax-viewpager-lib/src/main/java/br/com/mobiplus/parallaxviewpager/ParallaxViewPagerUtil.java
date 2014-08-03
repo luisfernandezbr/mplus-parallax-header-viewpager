@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.res.Resources;
 import android.graphics.RectF;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -27,6 +29,8 @@ import com.nineoldandroids.view.ViewHelper;
  * Created by luisfernandez on 8/2/14.
  */
 public class ParallaxViewPagerUtil {
+    private static final String TAG = "ParallaxViewPagerUtil";
+
     private static AccelerateDecelerateInterpolator sSmoothInterpolator = new AccelerateDecelerateInterpolator();
     private TypedValue mTypedValue = new TypedValue();
 
@@ -74,6 +78,11 @@ public class ParallaxViewPagerUtil {
 
         mScrollTabHolder = new ScrollTabHolderListener() {
             @Override
+            public void setScrollTabHolder(ScrollTabHolderListener scrollTabHolder) {
+
+            }
+
+            @Override
             public void adjustScroll(int scrollHeight) {
 
             }
@@ -81,6 +90,11 @@ public class ParallaxViewPagerUtil {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount, int pagePosition) {
                 onPageScroll(view, firstVisibleItem, visibleItemCount, totalItemCount, pagePosition);
+            }
+
+            @Override
+            public Fragment getFragment() {
+                return null;
             }
         };
 
@@ -132,6 +146,8 @@ public class ParallaxViewPagerUtil {
     }
 
     public void onPageScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount, int pagePosition) {
+
+        Log.d(TAG, "onPageScroll: [pagePosition:" + pagePosition + "]");
         if (mViewPager.getCurrentItem() == pagePosition) {
             int scrollY = getScrollY(view);
             ViewHelper.setTranslationY(mHeader, Math.max(-scrollY, mMinHeaderTranslation));
@@ -148,6 +164,8 @@ public class ParallaxViewPagerUtil {
 
         int firstVisiblePosition = view.getFirstVisiblePosition();
         int top = c.getTop();
+
+        Log.d(TAG, "getScrollY: [firstVisiblePosition:" + firstVisiblePosition + "]");
 
         int headerHeight = 0;
         if (firstVisiblePosition >= 1) {
